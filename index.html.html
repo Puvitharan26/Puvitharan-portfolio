@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Puvitharan A/L Rawi — IT & Data Analyst Portfolio</title>
+<meta name="description" content="Puvitharan A/L Rawi — IT Undergraduate at UKM. Web development, data analytics, dashboard development, and database management projects.">
+<meta name="author" content="Puvitharan A/L Rawi">
+<style>
+  :root{
+    --bg:#0b1020;
+    --bg-soft:#121a33;
+    --card:#151d3b;
+    --card-2:#1a2547;
+    --border:rgba(255,255,255,.08);
+    --text:#e7ecf6;
+    --muted:#9aa6c2;
+    --accent:#5eead4;
+    --accent-2:#818cf8;
+    --accent-3:#f472b6;
+    --chip:rgba(94,234,212,.12);
+    --chip-border:rgba(94,234,212,.3);
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+    --radius:18px;
+  }
+  [data-theme="light"]{
+    --bg:#f7f9fc;
+    --bg-soft:#ffffff;
+    --card:#ffffff;
+    --card-2:#f3f5fa;
+    --border:rgba(15,23,42,.08);
+    --text:#0f172a;
+    --muted:#5b657a;
+    --accent:#0d9488;
+    --accent-2:#4f46e5;
+    --accent-3:#db2777;
+    --chip:rgba(13,148,136,.1);
+    --chip-border:rgba(13,148,136,.3);
+    --shadow:0 10px 30px rgba(15,23,42,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    transition:background .3s ease,color .3s ease;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  a{color:inherit;text-decoration:none}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(11,16,32,.72);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  [data-theme="light"] nav{background:rgba(247,249,252,.82)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1080px;margin:0 auto}
+  .brand{font-weight:700;letter-spacing:.3px;font-size:1.05rem}
+  .brand span{color:var(--accent)}
+  .nav-links{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+  .nav-links a{padding:8px 12px;border-radius:10px;color:var(--muted);font-size:.92rem;font-weight:500;transition:color .2s,background .2s}
+  .nav-links a:hover{color:var(--text);background:var(--card)}
+  .theme-btn{
+    background:var(--card);border:1px solid var(--border);color:var(--text);
+    width:38px;height:38px;border-radius:10px;cursor:pointer;font-size:1rem;
+    display:inline-flex;align-items:center;justify-content:center;transition:transform .2s;
+  }
+  .theme-btn:hover{transform:rotate(20deg)}
+  .menu-btn{display:none;background:var(--card);border:1px solid var(--border);color:var(--text);width:38px;height:38px;border-radius:10px;cursor:pointer;font-size:1.1rem}
+
+  /* ---------- Hero ---------- */
+  header.hero{
+    padding:84px 0 60px;
+    position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(600px 300px at 80% 0%,rgba(129,140,248,.18),transparent 60%),
+      radial-gradient(500px 280px at 10% 30%,rgba(94,234,212,.16),transparent 60%);
+    pointer-events:none;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.4fr .9fr;gap:40px;align-items:center;position:relative}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 14px;border-radius:999px;
+    background:var(--chip);border:1px solid var(--chip-border);
+    color:var(--accent);font-size:.82rem;font-weight:600;
+    margin-bottom:18px;
+  }
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(94,234,212,.2);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  h1.hero-name{
+    font-size:clamp(2.2rem,6vw,3.6rem);font-weight:800;letter-spacing:-1px;line-height:1.1;
+    margin-bottom:10px;
+  }
+  .hero-name .grad{
+    background:linear-gradient(120deg,var(--accent),var(--accent-2) 55%,var(--accent-3));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .hero-role{font-size:clamp(1.05rem,2.5vw,1.4rem);font-weight:600;color:var(--muted);margin-bottom:18px}
+  .hero-bio{color:var(--muted);font-size:1.02rem;max-width:56ch;margin-bottom:26px}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 22px;border-radius:12px;font-weight:600;font-size:.95rem;
+    cursor:pointer;border:1px solid transparent;transition:transform .15s,box-shadow .2s,background .2s;
+  }
+  .btn-primary{background:linear-gradient(120deg,var(--accent),var(--accent-2));color:#0b1020}
+  [data-theme="light"] .btn-primary{color:#fff}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(94,234,212,.35)}
+  .btn-ghost{background:var(--card);border:1px solid var(--border);color:var(--text)}
+  .btn-ghost:hover{transform:translateY(-2px);border-color:var(--accent)}
+
+  .hero-card{
+    background:linear-gradient(160deg,var(--card),var(--card-2));
+    border:1px solid var(--border);border-radius:var(--radius);
+    padding:24px;box-shadow:var(--shadow);position:relative;
+  }
+  .hero-card h3{font-size:.8rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--muted);margin-bottom:14px}
+  .stat-row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px}
+  .stat{background:var(--bg-soft);border:1px solid var(--border);border-radius:14px;padding:14px}
+  .stat .num{font-size:1.55rem;font-weight:800;color:var(--accent);line-height:1}
+  .stat .lbl{font-size:.78rem;color:var(--muted);margin-top:4px}
+  .mini-skills{display:flex;flex-wrap:wrap;gap:6px}
+  .mini-skills span{font-size:.75rem;padding:5px 10px;border-radius:999px;background:var(--bg-soft);border:1px solid var(--border);color:var(--muted)}
+
+  /* ---------- Sections ---------- */
+  section{padding:56px 0;border-top:1px solid var(--border)}
+  .sec-head{margin-bottom:32px}
+  .sec-head .kicker{color:var(--accent);font-weight:700;font-size:.82rem;letter-spacing:2px;text-transform:uppercase}
+  .sec-head h2{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;letter-spacing:-.5px;margin-top:6px}
+  .sec-head p{color:var(--muted);max-width:60ch;margin-top:8px}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1.3fr .9fr;gap:32px;align-items:start}
+  .about-text p{color:var(--muted);margin-bottom:14px}
+  .about-text strong{color:var(--text)}
+  .info-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+  .info-card h3{font-size:.78rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--muted);margin-bottom:14px}
+  .info-row{display:flex;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border);font-size:.92rem}
+  .info-row:last-child{border-bottom:0}
+  .info-row .ic{color:var(--accent);font-weight:700;min-width:90px}
+
+  /* Skills */
+  .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+  .skill-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:transform .2s,border-color .2s}
+  .skill-card:hover{transform:translateY(-4px);border-color:var(--chip-border)}
+  .skill-card .sc-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .skill-card .sc-ic{width:38px;height:38px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font-size:1.1rem;background:var(--chip);color:var(--accent)}
+  .skill-card h3{font-size:1rem;font-weight:700}
+  .skill-card p{font-size:.82rem;color:var(--muted);margin-top:-6px;margin-bottom:12px}
+  .chip-list{display:flex;flex-wrap:wrap;gap:6px}
+  .chip-list span{font-size:.78rem;padding:5px 11px;border-radius:999px;background:var(--bg-soft);border:1px solid var(--border);color:var(--text)}
+
+  /* Projects */
+  .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:20px}
+  .proj-card{
+    background:linear-gradient(160deg,var(--card),var(--card-2));
+    border:1px solid var(--border);border-radius:var(--radius);
+    padding:24px;box-shadow:var(--shadow);transition:transform .2s,border-color .2s;
+    display:flex;flex-direction:column;
+  }
+  .proj-card:hover{transform:translateY(-6px);border-color:var(--chip-border)}
+  .proj-tag{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:12px}
+  .tag-it{background:rgba(129,140,248,.15);color:var(--accent-2);border:1px solid rgba(129,140,248,.3)}
+  .tag-da{background:rgba(94,234,212,.13);color:var(--accent);border:1px solid rgba(94,234,212,.3)}
+  .tag-web{background:rgba(244,114,182,.13);color:var(--accent-3);border:1px solid rgba(244,114,182,.3)}
+  .proj-card h3{font-size:1.15rem;font-weight:800;margin-bottom:6px}
+  .proj-card .sub{font-size:.82rem;color:var(--muted);margin-bottom:12px}
+  .proj-card p{font-size:.9rem;color:var(--muted);margin-bottom:14px;flex:1}
+  .proj-bullets{margin:0 0 14px;padding-left:18px;color:var(--muted);font-size:.86rem}
+  .proj-bullets li{margin-bottom:4px}
+  .proj-stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .proj-stack span{font-size:.72rem;padding:4px 9px;border-radius:6px;background:var(--bg-soft);border:1px solid var(--border);color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .proj-links{display:flex;gap:10px;margin-top:auto}
+  .proj-links a{font-size:.84rem;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:5px}
+  .proj-links a:hover{text-decoration:underline}
+
+  /* Experience timeline */
+  .timeline{position:relative;padding-left:28px}
+  .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--border)}
+  .tl-item{position:relative;padding:0 0 28px 0}
+  .tl-item::before{content:"";position:absolute;left:-26px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--bg)}
+  .tl-item .tl-role{font-weight:700;font-size:1.02rem}
+  .tl-item .tl-org{color:var(--accent);font-size:.88rem;font-weight:600;margin-bottom:2px}
+  .tl-item .tl-date{font-size:.78rem;color:var(--muted);margin-bottom:8px}
+  .tl-item p{font-size:.9rem;color:var(--muted)}
+  .tl-item ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:.88rem}
+  .tl-item ul li{margin-bottom:4px}
+
+  /* Certs */
+  .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .cert-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;display:flex;gap:14px;align-items:flex-start}
+  .cert-ic{width:42px;height:42px;border-radius:10px;background:var(--chip);color:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+  .cert-card h3{font-size:.98rem;font-weight:700;margin-bottom:2px}
+  .cert-card .cert-issuer{font-size:.8rem;color:var(--accent);margin-bottom:6px}
+  .cert-card p{font-size:.84rem;color:var(--muted)}
+
+  /* Awards */
+  .award-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .award{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start}
+  .award .a-ic{color:var(--accent-3);font-size:1.3rem;flex-shrink:0}
+  .award h3{font-size:.92rem;font-weight:700;margin-bottom:2px}
+  .award p{font-size:.82rem;color:var(--muted)}
+
+  /* Contact */
+  .contact-card{
+    background:linear-gradient(160deg,var(--card),var(--card-2));
+    border:1px solid var(--border);border-radius:var(--radius);
+    padding:40px;text-align:center;box-shadow:var(--shadow);
+  }
+  .contact-card h2{font-size:clamp(1.6rem,4vw,2.3rem);font-weight:800;margin-bottom:10px}
+  .contact-card p{color:var(--muted);max-width:52ch;margin:0 auto 24px}
+  .contact-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .contact-link{
+    display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:10px;
+    background:var(--bg-soft);border:1px solid var(--border);font-weight:600;font-size:.9rem;transition:transform .2s,border-color .2s;
+  }
+  .contact-link:hover{transform:translateY(-2px);border-color:var(--accent)}
+
+  footer{padding:30px 0;text-align:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border)}
+
+  /* Responsive */
+  @media (max-width:780px){
+    .hero-grid{grid-template-columns:1fr;gap:24px}
+    .about-grid{grid-template-columns:1fr}
+    .nav-links{display:none}
+    .menu-btn{display:inline-flex;align-items:center;justify-content:center}
+    .nav-open .nav-links{display:flex;position:absolute;top:64px;left:0;right:0;flex-direction:column;background:var(--bg-soft);border-bottom:1px solid var(--border);padding:10px;gap:2px}
+    .nav-open .nav-links a{width:100%}
+    header.hero{padding:50px 0 30px}
+    section{padding:44px 0}
+    .contact-card{padding:28px 20px}
+  }
+  @media (max-width:480px){
+    .stat-row{grid-template-columns:1fr}
+    .hero-cta .btn{flex:1;justify-content:center}
+  }
+  /* Reveal on scroll */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.show{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none}
+    .pill .dot{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="brand">Puvitharan<span>.</span>Rawi</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#certifications">Certs</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">🌙</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill"><span class="dot"></span> Open to internships &amp; junior roles</span>
+      <h1 class="hero-name">Hi, I'm <span class="grad">Puvitharan</span><br>A/L Rawi</h1>
+      <p class="hero-role">IT Undergraduate · Web Developer · Data Analyst</p>
+      <p class="hero-bio">
+        Final-year IT student at Universiti Kebangsaan Malaysia (UKM) building practical web-based
+        solutions and analytics dashboards. I enjoy turning messy data into clear decisions, and
+        shipping reliable systems end-to-end — from database design to the last pixel.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View My Work →</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+      </div>
+    </div>
+    <aside class="hero-card reveal">
+      <h3>At a glance</h3>
+      <div class="stat-row">
+        <div class="stat"><div class="num">3.64</div><div class="lbl">Current CGPA</div></div>
+        <div class="stat"><div class="num">2027</div><div class="lbl">Expected grad</div></div>
+        <div class="stat"><div class="num">2</div><div class="lbl">Internships</div></div>
+        <div class="stat"><div class="num">4×</div><div class="lbl">Dean's List</div></div>
+      </div>
+      <h3 style="margin-top:6px">Core stack</h3>
+      <div class="mini-skills">
+        <span>PHP</span><span>MySQL</span><span>JavaScript</span><span>Python</span>
+        <span>Tableau</span><span>Next.js</span><span>SQL</span><span>Linux</span><span>Chart.js</span>
+      </div>
+    </aside>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">About Me</div>
+      <h2>Building reliable systems &amp; turning data into decisions</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          I'm an <strong>Information Technology undergraduate at Universiti Kebangsaan Malaysia (UKM)</strong>,
+          currently in my 4th year with a CGPA of <strong>3.64</strong> and an expected graduation in November 2027.
+          My coursework spans Web &amp; Mobile Programming, Advanced Database Management, Network
+          Infrastructure, Computer &amp; Network Security, and System Administration.
+        </p>
+        <p>
+          My hands-on work sits at the intersection of <strong>web development and data analytics</strong>.
+          For my final-year project I built <strong>SmartQuote</strong>, a quotation-analytics system that uses
+          OCR to extract financial data from PDFs, a Human-in-the-Loop validation workflow, and a real-time
+          analytics dashboard with 28+ SQL trends. I've also interned as a Web Developer &amp; Data Analyst
+          at Universiti Malaya's Academic Analytics Centre, developing an FTE (Full-Time Equivalent)
+          dashboard and the department's landing page.
+        </p>
+        <p>
+          Beyond the keyboard, I hold leadership roles in student organisations — Vice President of the
+          GPS Club, Vice Treasurer of the Campus Sustainability Bureau, and Secretary of the SIG i-Bisnes
+          special interest group — which sharpened my communication, coordination, and stakeholder
+          management skills.
+        </p>
+      </div>
+      <aside class="info-card reveal">
+        <h3>Quick info</h3>
+        <div class="info-row"><span class="ic">Location</span><span>Selangor, Malaysia</span></div>
+        <div class="info-row"><span class="ic">Education</span><span>BIT (Hons), UKM</span></div>
+        <div class="info-row"><span class="ic">CGPA</span><span>3.64 / 4.00</span></div>
+        <div class="info-row"><span class="ic">Focus</span><span>Web Dev · Data Analytics</span></div>
+        <div class="info-row"><span class="ic">Languages</span><span>English, Bahasa Malaysia, Tamil</span></div>
+        <div class="info-row"><span class="ic">Email</span><span>puvitharanwork24@gmail.com</span></div>
+        <div class="info-row"><span class="ic">Phone</span><span>+6010-2324579</span></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Skills</div>
+      <h2>Technical &amp; analytical toolkit</h2>
+      <p>Built across coursework, internships, certifications, and self-directed projects.</p>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-card reveal">
+        <div class="sc-head"><span class="sc-ic">💻</span><h3>Web Development</h3></div>
+        <p>Full-stack web apps, dashboards &amp; landing pages.</p>
+        <div class="chip-list">
+          <span>PHP</span><span>JavaScript</span><span>HTML5</span><span>CSS3</span>
+          <span>Next.js</span><span>Java</span><span>Kotlin</span><span>Chart.js</span><span>Apache</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="sc-head"><span class="sc-ic">📊</span><h3>Data Analytics</h3></div>
+        <p>Cleaning, modelling, visualising &amp; reporting on data.</p>
+        <div class="chip-list">
+          <span>SQL</span><span>MySQL</span><span>phpMyAdmin</span><span>Tableau</span>
+          <span>Excel</span><span>R</span><span>Python</span><span>Data Viz</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="sc-head"><span class="sc-ic">🗄️</span><h3>Database &amp; Security</h3></div>
+        <p>Schema design, RBAC, prepared statements, audit logging.</p>
+        <div class="chip-list">
+          <span>MySQL</span><span>RBAC</span><span>bcrypt</span><span>Normalization</span>
+          <span>OWASP Testing</span><span>Audit Logs</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="sc-head"><span class="sc-ic">🐧</span><h3>Systems &amp; Linux</h3></div>
+        <p>Red Hat system administration &amp; shell scripting.</p>
+        <div class="chip-list">
+          <span>RHEL</span><span>Bash</span><span>SELinux</span><span>LVM</span>
+          <span>Firewall</span><span>Containers</span><span>Troubleshooting</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="sc-head"><span class="sc-ic">🛠️</span><h3>Tools &amp; Platforms</h3></div>
+        <p>Day-to-day productivity, deployment &amp; collaboration.</p>
+        <div class="chip-list">
+          <span>Office 365</span><span>Vercel</span><span>Git/GitHub</span><span>OCR.Space API</span>
+          <span>Network Basics</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="sc-head"><span class="sc-ic">🤝</span><h3>Soft Skills</h3></div>
+        <p>Communication, teamwork &amp; stakeholder coordination.</p>
+        <div class="chip-list">
+          <span>Communication</span><span>Teamwork</span><span>Time Mgmt</span>
+          <span>Critical Thinking</span><span>Problem-Solving</span><span>Adaptability</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Featured Projects</div>
+      <h2>IT &amp; Data Analyst work I'm proud of</h2>
+      <p>A mix of web systems, analytics dashboards, and academic competition builds.</p>
+    </div>
+    <div class="proj-grid">
+
+      <!-- SmartQuote -->
+      <article class="proj-card reveal">
+        <span class="proj-tag tag-it">Final Year Project · IT</span>
+        <h3>SmartQuote — Quotation Analytics System</h3>
+        <div class="sub">Universiti Kebangsaan Malaysia</div>
+        <p>A web-based quotation analytics system that automates OCR-based extraction of financial data
+          from PDF and scanned quotation documents, with a Human-in-the-Loop validation workflow.</p>
+        <ul class="proj-bullets">
+          <li><strong>85–95%</strong> extraction accuracy via a custom two-pass algorithm &amp; three parsers.</li>
+          <li><strong>100%</strong> accuracy on verified records through HITL review before DB submission.</li>
+          <li>Real-time analytics dashboard with <strong>8 visualisation components</strong> &amp; <strong>28+ SQL trends</strong>.</li>
+          <li>Rule-based recommendation engine (R1–R5) for win rates, margins &amp; pricing.</li>
+          <li>RBAC, bcrypt, prepared statements, audit logging — <strong>56/56</strong> functional, <strong>15/15</strong> UAT, <strong>12/12</strong> OWASP tests passed.</li>
+        </ul>
+        <div class="proj-stack">
+          <span>PHP</span><span>MySQL</span><span>JavaScript</span><span>Chart.js</span>
+          <span>HTML5</span><span>CSS3</span><span>Apache</span><span>OCR.Space API</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/Puvitharan26" target="_blank" rel="noopener">↗ Source (GitHub)</a>
+          <a href="#contact">✉ Case study on request</a>
+        </div>
+      </article>
+
+      <!-- FTE Dashboard -->
+      <article class="proj-card reveal">
+        <span class="proj-tag tag-da">Data Analytics · Internship</span>
+        <h3>FTE Dashboard — Academic Analytics Centre</h3>
+        <div class="sub">Universiti Malaya (UM)</div>
+        <p>Developed a Full-Time Equivalent (FTE) dashboard for the Academic Analytics Centre to help
+          departments understand how workload and staffing metrics are calculated and reported.</p>
+        <ul class="proj-bullets">
+          <li>Designed data pipelines to consolidate FTE inputs across faculties.</li>
+          <li>Built interactive visual components for KPIs and trend breakdowns.</li>
+          <li>Co-organised workshops briefing other departments &amp; faculties on FTE methodology.</li>
+          <li>Also developing the department's public-facing landing page.</li>
+        </ul>
+        <div class="proj-stack">
+          <span>SQL</span><span>Dashboard Dev</span><span>Data Viz</span><span>Stakeholder Briefings</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/Puvitharan26" target="_blank" rel="noopener">↗ Source (GitHub)</a>
+          <a href="#contact">✉ Case study on request</a>
+        </div>
+      </article>
+
+      <!-- Google Data Analytics capstone -->
+      <article class="proj-card reveal">
+        <span class="proj-tag tag-da">Data Analytics · Certification</span>
+        <h3>Google Data Analytics Capstone</h3>
+        <div class="sub">Coursera Professional Certificate</div>
+        <p>Completed case-study projects focused on data cleaning, analysis, visualisation and
+          decision-making using real-world business scenarios and the analytics workflow.</p>
+        <ul class="proj-bullets">
+          <li>End-to-end analysis: ask, prepare, process, analyse, share, act.</li>
+          <li>Practised SQL querying, Excel modelling and Tableau storytelling.</li>
+          <li>Delivered findings in a stakeholder-ready format.</li>
+        </ul>
+        <div class="proj-stack">
+          <span>SQL</span><span>Excel</span><span>Tableau</span><span>R</span><span>Case Study</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/Puvitharan26" target="_blank" rel="noopener">↗ Source (GitHub)</a>
+        </div>
+      </article>
+
+      <!-- Huawei ICT -->
+      <article class="proj-card reveal">
+        <span class="proj-tag tag-it">Competition · IT</span>
+        <h3>Huawei ICT Competition — Computing Track</h3>
+        <div class="sub">National level, Malaysia</div>
+        <p>Competed in the Huawei National ICT Competition Computing Track, covering networking,
+          cloud, storage and computing fundamentals — winning <strong>Third Prize in 2024–2025</strong>.</p>
+        <ul class="proj-bullets">
+          <li>Networking, cloud &amp; storage problem-solving under time pressure.</li>
+          <li>Applied system &amp; infrastructure knowledge from RH124 / RH134 coursework.</li>
+        </ul>
+        <div class="proj-stack">
+          <span>Networking</span><span>Cloud</span><span>Storage</span><span>Computing</span>
+        </div>
+        <div class="proj-links">
+          <a href="#certifications">🏆 See awards</a>
+        </div>
+      </article>
+
+      <!-- Java Fun Run -->
+      <article class="proj-card reveal">
+        <span class="proj-tag tag-web">Programming · Competition</span>
+        <h3>Happy Coding Hour — Java Fun Run</h3>
+        <div class="sub">Matriculation level</div>
+        <p>Won <strong>First Prize</strong> in the Java Fun Run programming competition at matriculation level,
+          solving algorithmic challenges against a field of competitors.</p>
+        <ul class="proj-bullets">
+          <li>Algorithmic problem-solving &amp; clean Java code under time limits.</li>
+          <li>Strong foundation that carried into later coursework &amp; projects.</li>
+        </ul>
+        <div class="proj-stack">
+          <span>Java</span><span>Algorithms</span><span>Problem Solving</span>
+        </div>
+        <div class="proj-links">
+          <a href="#certifications">🏆 See awards</a>
+        </div>
+      </article>
+
+      <!-- Landing page -->
+      <article class="proj-card reveal">
+        <span class="proj-tag tag-web">Web Development</span>
+        <h3>Department Landing Page</h3>
+        <div class="sub">Academic Analytics Centre, UM</div>
+        <p>Currently developing a public-facing landing page for the Academic Analytics Centre to
+          communicate the department's analytics services, FTE methodology and workshop offerings.</p>
+        <ul class="proj-bullets">
+          <li>Responsive design accessible across phone, tablet &amp; desktop.</li>
+          <li>Content strategy aligned with stakeholder briefings.</li>
+        </ul>
+        <div class="proj-stack">
+          <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Responsive</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://github.com/Puvitharan26" target="_blank" rel="noopener">↗ Source (GitHub)</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Experience</div>
+      <h2>Internships &amp; work history</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-org">Academic Analytics Centre, Universiti Malaya</div>
+        <div class="tl-role">Web Developer &amp; Data Analyst Intern</div>
+        <div class="tl-date">Aug 2026 – Jan 2027</div>
+        <ul>
+          <li>Developed the Full-Time Equivalent (FTE) dashboard, ongoing with modifications.</li>
+          <li>Currently developing the department's landing page.</li>
+          <li>Managed data &amp; organised workshops briefing other departments/faculties on FTE calculation.</li>
+        </ul>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-org">Amity Acumen Sdn Bhd</div>
+        <div class="tl-role">Admin &amp; Digital Marketing Intern</div>
+        <div class="tl-date">Jun 2026 – Aug 2026</div>
+        <ul>
+          <li>Supported admin operations, documentation, spreadsheets &amp; project coordination.</li>
+          <li>Assisted in corporate training programs, workshops &amp; team-building events.</li>
+          <li>Supported digital marketing, promotional content &amp; event marketing activities.</li>
+          <li>Conducted vendor research, quotation sourcing &amp; cost comparisons.</li>
+          <li>Assisted with HR coordination &amp; external stakeholder communication.</li>
+          <li>Maintained budget trackers, purchase lists &amp; project documentation.</li>
+        </ul>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-org">G-Mart Sungai Petani, Kedah</div>
+        <div class="tl-role">Salesperson</div>
+        <div class="tl-date">May 2023 – Jun 2023</div>
+        <ul>
+          <li>Assisted customers in selecting products, improving customer satisfaction.</li>
+          <li>Managed product arrangement and inventory organization.</li>
+          <li>Maintained accurate labeling and stock presentation.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Certifications &amp; Awards</div>
+      <h2>Verified credentials &amp; recognition</h2>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <span class="cert-ic">📈</span>
+        <div>
+          <h3>Google Data Analytics Professional Certificate</h3>
+          <div class="cert-issuer">Coursera</div>
+          <p>Data cleaning, analysis, visualisation &amp; decision-making using real-world case studies. Skills: SQL, Excel, Tableau, R, analytical thinking.</p>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <span class="cert-ic">🐧</span>
+        <div>
+          <h3>Red Hat System Administration I (RH124)</h3>
+          <div class="cert-issuer">Red Hat Academy</div>
+          <p>Fundamental Linux administration &amp; command-line operations on RHEL — users, files, software &amp; storage.</p>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <span class="cert-ic">🛡️</span>
+        <div>
+          <h3>Red Hat System Administration II (RH134)</h3>
+          <div class="cert-issuer">Red Hat Academy</div>
+          <p>Advanced system management, SELinux, firewall, LVM, shell scripting, troubleshooting &amp; containers.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-head reveal" style="margin-top:36px">
+      <div class="kicker">Awards &amp; Participation</div>
+      <h2>Recognition</h2>
+    </div>
+    <div class="award-list">
+      <div class="award reveal">
+        <span class="a-ic">🏆</span>
+        <div><h3>Dean's List — UKM</h3><p>Semesters 3, 4, 5 &amp; 6 — recognising academic excellence.</p></div>
+      </div>
+      <div class="award reveal">
+        <span class="a-ic">🥉</span>
+        <div><h3>Huawei National ICT Competition 2024–2025</h3><p>Third Prize, Computing Track.</p></div>
+      </div>
+      <div class="award reveal">
+        <span class="a-ic">📋</span>
+        <div><h3>Huawei National ICT Competition 2025–2026</h3><p>Participation, Computing Track.</p></div>
+      </div>
+      <div class="award reveal">
+        <span class="a-ic">🥇</span>
+        <div><h3>Happy Coding Hour — Java Fun Run</h3><p>First Prize at Matriculation level.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-card reveal">
+      <h2>Let's build something together</h2>
+      <p>I'm open to internships, junior IT and data analyst roles, and collaboration on web or
+        analytics projects. The fastest way to reach me is by email or LinkedIn.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:puvitharanwork24@gmail.com">✉ Email</a>
+        <a class="contact-link" href="http://www.linkedin.com/in/puvitharanrawi" target="_blank" rel="noopener">in LinkedIn</a>
+        <a class="contact-link" href="https://github.com/Puvitharan26" target="_blank" rel="noopener">↗ GitHub</a>
+        <a class="contact-link" href="tel:+60102324579">☎ +6010-2324579</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    © <span id="yr"></span> Puvitharan A/L Rawi · Built with HTML, CSS &amp; vanilla JS ·
+    <a href="#home" style="color:var(--accent)">Back to top ↑</a>
+  </div>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Theme toggle (persist in localStorage)
+  (function(){
+    var saved = localStorage.getItem('theme');
+    if(saved) document.documentElement.setAttribute('data-theme', saved);
+    var btn = document.getElementById('themeBtn');
+    function sync(){ btn.textContent = document.documentElement.getAttribute('data-theme')==='light' ? '☀️' : '🌙'; }
+    sync();
+    btn.addEventListener('click', function(){
+      var cur = document.documentElement.getAttribute('data-theme');
+      var next = cur === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      sync();
+    });
+  })();
+
+  // Mobile menu
+  var nav = document.querySelector('nav');
+  document.getElementById('menuBtn').addEventListener('click', function(){
+    nav.classList.toggle('nav-open');
+  });
+  document.querySelectorAll('#navLinks a').forEach(function(a){
+    a.addEventListener('click', function(){ nav.classList.remove('nav-open'); });
+  });
+
+  // Reveal on scroll
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+</body>
+</html>
